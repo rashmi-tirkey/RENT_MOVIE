@@ -1,0 +1,41 @@
+.header-nav {
+    background-color: #333544;
+    color: white;
+    display: flex;
+    height: 64px;
+    justify-content: space-evenly;
+
+    .nav-bar {
+        display: flex;
+
+        .nav-bar-list {
+            cursor: pointer;
+            font-size: 1em;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: lighter;
+            padding-left: 30px;
+            list-style: none;
+        }
+    }
+
+    .search {
+        width: 50%;
+        margin-top: 10px;
+        position: relative;
+
+        .search-input {
+            outline: none;
+            border: none;
+            width: 90%;
+            padding: 10px 10px 10px 40px;
+        }
+
+        .search-icon {
+            color: #828282;
+            padding-right: 10px;
+            padding-left: 10px;
+            position: absolute;
+            top: 8px
+        }
+    }
+}
