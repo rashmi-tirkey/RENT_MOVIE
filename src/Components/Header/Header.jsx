@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import Register from "../Register/Register";
 import Login from "../Login/Login"
-import * as Constant from './../../Constants/constants'
+import * as Constant from "./../../Constants/constants"
 
 import "./Header.scss"
 
