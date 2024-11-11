@@ -1,98 +1,38 @@
-import React, { useState, useEffect } from "react";
+.App {
+  text-align: center;
+}
 
-const App = () => {
-  const [tasks, setTasks] = useState([]);
-  const [input, setInput] = useState("");
-  const [editId, setEditId] = useState(null);
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
 
-  // Load tasks from local storage on initial render
-  useEffect(() => {
-    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    setTasks(savedTasks);
-  }, []);
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
 
-  // Save tasks to local storage whenever tasks change
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 
-  const addTask = () => {
-    if (input.trim()) {
-      const newTask = { id: Date.now(), text: input, completed: false };
-      setTasks([...tasks, newTask]);
-      setInput("");
-    }
-  };
+.App-link {
+  color: #61dafb;
+}
 
-  const editTask = (id, text) => {
-    setEditId(id);
-    setInput(text);
-  };
-
-  const updateTask = () => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === editId ? { ...task, text: input } : task
-      )
-    );
-    setEditId(null);
-    setInput("");
-  };
-
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-  };
-
-  const toggleComplete = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
-  };
-
-  return (
-    <div style={{ padding: "20px", maxWidth: "400px", margin: "auto" }}>
-      <h2>Todo List</h2>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter a task"
-      />
-      <button onClick={editId ? updateTask : addTask}>
-        {editId ? "Update" : "Add"}
-      </button>
-
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        {tasks.map((task) => (
-          <li key={task.id} style={{ marginBottom: "10px" }}>
-            <span
-              style={{
-                textDecoration: task.completed ? "line-through" : "none",
-                cursor: "pointer",
-              }}
-              onClick={() => toggleComplete(task.id)}
-            >
-              {task.text}
-            </span>
-            <button
-              onClick={() => editTask(task.id, task.text)}
-              style={{ marginLeft: "10px" }}
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => deleteTask(task.id)}
-              style={{ marginLeft: "5px" }}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default App;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
